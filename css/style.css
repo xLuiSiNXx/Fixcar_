@@ -1,0 +1,240 @@
+
+        .navbar-brand {
+            color: red !important;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        body {
+            background-color: #001F3F;
+            color: white;
+        }
+        
+        .btn-cita {
+            background-color: gold;
+            color: black;
+            font-weight: bold;
+        }
+        
+        .slogan {
+            font-size: 20px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        
+        .presentacion {
+            padding: 20px;
+            background-color: #003366;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .direccion {
+            font-style: italic;
+            color: #ccc;
+        }
+        /* Estilos para el modal si es necesario */
+        
+        #modalCita .modal-content {
+            background-color: #003366;
+            /* Fondo oscuro para el contenido del modal */
+            color: white;
+            /* Texto blanco */
+        }
+        
+        #modalCita .modal-header {
+            border-bottom: 1px solid #004080;
+            /* Línea divisoria más clara */
+        }
+        
+        #modalCita .modal-footer {
+            border-top: 1px solid #004080;
+            /* Línea divisoria más clara */
+        }
+        
+        #modalCita .form-label {
+            color: #FFD700;
+            /* Etiquetas en color dorado para destacar */
+        }
+        
+        #modalCita .form-control {
+            background-color: #001F3F;
+            /* Fondo de input más oscuro */
+            color: white;
+            /* Texto del input blanco */
+            border: 1px solid #004080;
+        }
+        
+        #modalCita .form-control:focus {
+            background-color: #002a50;
+            color: white;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+        }
+        
+        #modalCita .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+            /* Para que la X de cerrar sea visible en fondo oscuro */
+        }
+/* ===== ESTILOS GENERALES ===== */
+
+body {
+    background: linear-gradient(to bottom, #001F3F, #003366);
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.navbar-brand {
+    color: #FFD700 !important;
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #FFD700 !important;
+    transform: scale(1.05);
+}
+
+/* ===== BOTONES ===== */
+
+.btn {
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== CARD ===== */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== INPUTS ===== */
+
+.form-control {
+    border-radius: 10px;
+    border: none;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(255,215,0,0.5);
+    border: 1px solid gold;
+}
+
+/* ===== TABLAS ===== */
+
+table {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+table th {
+    background-color: #FFD700 !important;
+    color: black !important;
+}
+
+/* ===== TITULOS ===== */
+
+h1, h2, h3 {
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* ===== PRESENTACION ===== */
+
+.presentacion {
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+
+    padding: 25px;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* ===== CARRUSEL ===== */
+
+.carousel img {
+    border-radius: 15px;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+/* ===== FOOTER OPCIONAL ===== */
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    background-color: #000814;
+}
+.navbar {
+    background-color: #000814 !important;
+}
+
+.btn-cita {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+    border: none;
+}
+
+.btn-cita:hover {
+    background-color: #ffcc00 !important;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+.navbar-fixcar {
+    background-color: #000814 !important;
+}
+
+.navbar-fixcar .navbar-brand {
+    color: #FFD700 !important;
+}
+
+.navbar-fixcar .nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+.navbar-fixcar .nav-link:hover,
+.navbar-fixcar .nav-link.active {
+    color: #FFD700 !important;
+}
+
+.btn-cita {
+    background-color: #FFD700 !important;
+    color: black !important;
+    font-weight: bold;
+    border: none;
+}

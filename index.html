@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FixCar - Taller Mecánico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+    
+</head>
+
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-fixcar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">FixCar</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="vehiculos.html">Vehículos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
+                <li class="nav-item"><a class="nav-link" href="accesorios.html">Accesorios</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="registro.html">Registro</a></li>
+            </ul>
+
+            <button class="btn btn-cita" type="button" data-bs-toggle="modal" data-bs-target="#modalCita">
+                Programa tu visita
+            </button>
+        </div>
+    </div>
+</nav>
+    <div class="container text-center mt-4">
+        <h1>FixCar</h1>
+        <p class="slogan">"Tú solo conduce"</p>
+    </div>
+
+    <div id="carouselFixCar" class="carousel slide container" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/Taller.jpg" class="d-block w-100" alt="Taller FixCar">
+            </div>
+            <div class="carousel-item">
+                <img src="img/Taller2.jpg" class="d-block w-100" alt="Mecánico trabajando">
+            </div>
+            <div class="carousel-item">
+                <img src="img/Taller3.jpg" class="d-block w-100" alt="Mecánico trabajando">
+            </div>
+            <div class="carousel-item">
+                <img src="img/Taller4.jpg" class="d-block w-100" alt="Mecánico trabajando">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselFixCar" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselFixCar" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+    </div>
+
+    <div class="container presentacion">
+        <h2>¿Quiénes somos?</h2>
+        <p>
+            Somos un taller mecánico especializado en servicios de mantenimiento automotriz, ubicado en Culiacán, Sinaloa. Con más de 7 años de experiencia, en FixCar ofrecemos una gran variedad de servicios mecánicos y eléctricos para autos a gasolina y diésel.
+            Además, contamos con servicio de grúa para arrastre y auxilio vial.
+        </p>
+        <p>
+            Todos nuestros trabajos tienen garantía dependiendo el tipo de pieza y la marca. También, podemos conseguir las refacciones que hagan falta, en casos especiales. Somos expertos en mantenimientos preventivos y correctivos de todo lo que tenga que ver con
+            motores a gasolina.
+        </p>
+        <p class="direccion">Dirección: Cima Lanín 3977, Alturas del Sur, Culiacán, Sinaloa.</p>
+    </div>
+
+    <div class="modal fade" id="modalCita" tabindex="-1" aria-labelledby="modalCitaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCitaLabel">Programar Visita de Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCita">
+                        <div class="mb-3">
+                            <label for="nombreCliente" class="form-label">Nombre Completo:</label>
+                            <input type="text" class="form-control" id="nombreCliente" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="telefonoCliente" class="form-label">Teléfono:</label>
+                                <input type="tel" class="form-control" id="telefonoCliente" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="emailCliente" class="form-label">Correo Electrónico:</label>
+                                <input type="email" class="form-control" id="emailCliente">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="vehiculoMarca" class="form-label">Marca del Vehículo:</label>
+                                <input type="text" class="form-control" id="vehiculoMarca" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="vehiculoModelo" class="form-label">Modelo y Año del Vehículo:</label>
+                                <input type="text" class="form-control" id="vehiculoModelo" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fechaCita" class="form-label">Fecha Deseada:</label>
+                                <input type="date" class="form-control" id="fechaCita" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="horaCita" class="form-label">Hora Deseada:</label>
+                                <input type="time" class="form-control" id="horaCita" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionServicio" class="form-label">Descripción Breve del Servicio Requerido:</label>
+                            <textarea class="form-control" id="descripcionServicio" rows="3" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cita" id="btnConfirmarCita">Confirmar Cita </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para simular la confirmación de la cita
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnConfirmarCita = document.getElementById('btnConfirmarCita');
+            const formCita = document.getElementById('formCita');
+            const modalCitaElement = document.getElementById('modalCita');
+            const modalCita = bootstrap.Modal.getInstance(modalCitaElement) || new bootstrap.Modal(modalCitaElement);
+
+            btnConfirmarCita.addEventListener('click', function() {
+                // Validar el formulario (Bootstrap 5 se encarga de la validación básica con 'required')
+                // Para una validación más robusta, se podría usar formCita.checkValidity()
+                if (formCita.checkValidity()) {
+                    const nombre = document.getElementById('nombreCliente').value;
+                    // Aquí podrías recolectar todos los datos del formulario
+                    // const telefono = document.getElementById('telefonoCliente').value;
+                    // const email = document.getElementById('emailCliente').value;
+                    // ... y así sucesivamente
+
+                    alert(`¡Gracias ${nombre}! Tu cita ha sido programada (esto es una simulación).\nNos pondremos en contacto contigo para confirmar los detalles.`);
+
+                    formCita.reset(); // Limpiar el formulario
+                    modalCita.hide(); // Ocultar el modal
+                } else {
+                    // Si quieres mostrar los mensajes de error de Bootstrap, necesitas "submittear" el form (o simularlo)
+                    // Pero para este caso, un simple alert o dejar que Bootstrap muestre sus popups de validación es suficiente.
+                    // Forzar la visualización de errores de validación de Bootstrap
+                    formCita.reportValidity();
+                    // alert('Por favor, completa todos los campos requeridos.');
+                }
+            });
+
+            // Opcional: Limpiar el formulario cuando el modal se cierre por otras vías (ej. la X o tecla Esc)
+            modalCitaElement.addEventListener('hidden.bs.modal', function() {
+                formCita.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>

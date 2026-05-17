@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehículos - FixCar</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #001F3F; color: white;">
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">Registro de Vehículos</h1>
+
+        <!-- FORMULARIO -->
+        <div class="card bg-dark text-white p-4 mb-5">
+
+            <div class="mb-3">
+                <label class="form-label">Cliente</label>
+                <input type="text" id="cliente" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                <input type="text" id="marca" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Modelo</label>
+                <input type="text" id="modelo" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Año</label>
+                <input type="number" id="anio" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Servicio / Falla</label>
+                <textarea id="falla" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary" onclick="guardarVehiculo()">
+                Guardar Vehículo
+            </button>
+
+        </div>
+
+        <!-- TABLA -->
+        <table class="table table-dark table-striped">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Falla</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaVehiculos">
+
+            </tbody>
+
+        </table>
+
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-danger">
+                Volver al inicio
+            </a>
+        </div>
+
+    </div>
+    <script>
+
+    let vehiculos = JSON.parse(localStorage.getItem('vehiculos')) || [];
+
+    let editando = false;
+    let indiceEditar = null;
+
+    function guardarVehiculo() {
+
+        const cliente = document.getElementById('cliente').value;
+        const marca = document.getElementById('marca').value;
+        const modelo = document.getElementById('modelo').value;
+        const anio = document.getElementById('anio').value;
+        const falla = document.getElementById('falla').value;
+
+        if (cliente === '' || marca === '' || modelo === '' || anio === '' || falla === '') {
+            alert('Completa todos los campos');
+            return;
+        }
+
+        const vehiculo = {
+            id: Date.now(),
+            cliente,
+            marca,
+            modelo,
+            anio,
+            falla
+        };
+
+        if (editando) {
+
+            vehiculos[indiceEditar] = vehiculo;
+
+            editando = false;
+            indiceEditar = null;
+
+        } else {
+
+            vehiculos.push(vehiculo);
+
+        }
+
+        localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
+
+        limpiarFormulario();
+
+        mostrarVehiculos();
+    }
+
+    function mostrarVehiculos() {
+
+        const tabla = document.getElementById('tablaVehiculos');
+
+        tabla.innerHTML = '';
+
+        vehiculos.forEach((vehiculo, index) => {
+
+            tabla.innerHTML += `
+                <tr>
+                    <td>${vehiculo.id}</td>
+                    <td>${vehiculo.cliente}</td>
+                    <td>${vehiculo.marca}</td>
+                    <td>${vehiculo.modelo}</td>
+                    <td>${vehiculo.anio}</td>
+                    <td>${vehiculo.falla}</td>
+
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editarVehiculo(${index})">
+                            Editar
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="eliminarVehiculo(${index})">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+        });
+
+    }
+
+    function eliminarVehiculo(index) {
+
+        vehiculos.splice(index, 1);
+
+        localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
+
+        mostrarVehiculos();
+
+    }
+
+    function editarVehiculo(index) {
+
+        const vehiculo = vehiculos[index];
+
+        document.getElementById('cliente').value = vehiculo.cliente;
+        document.getElementById('marca').value = vehiculo.marca;
+        document.getElementById('modelo').value = vehiculo.modelo;
+        document.getElementById('anio').value = vehiculo.anio;
+        document.getElementById('falla').value = vehiculo.falla;
+
+        editando = true;
+        indiceEditar = index;
+
+    }
+
+    function limpiarFormulario() {
+
+        document.getElementById('cliente').value = '';
+        document.getElementById('marca').value = '';
+        document.getElementById('modelo').value = '';
+        document.getElementById('anio').value = '';
+        document.getElementById('falla').value = '';
+
+    }
+
+    mostrarVehiculos();
+
+</script>
+
+</body>
+
+</html>

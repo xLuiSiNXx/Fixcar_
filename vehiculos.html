@@ -77,15 +77,44 @@
         </div>
 
     </div>
-    <script>
-
-    let vehiculos = JSON.parse(localStorage.getItem('vehiculos')) || [];
+    
+   <script>
+    const API_URL = 'http://localhost:3000/vehiculos';
 
     let editando = false;
-    let indiceEditar = null;
+    let idEditar = null;
 
-    function guardarVehiculo() {
+    async function mostrarVehiculos() {
+        const respuesta = await fetch(API_URL);
+        const vehiculos = await respuesta.json();
 
+        const tabla = document.getElementById('tablaVehiculos');
+        tabla.innerHTML = '';
+
+        vehiculos.forEach((vehiculo) => {
+            tabla.innerHTML += `
+                <tr>
+                    <td>${vehiculo.id}</td>
+                    <td>${vehiculo.cliente}</td>
+                    <td>${vehiculo.marca}</td>
+                    <td>${vehiculo.modelo}</td>
+                    <td>${vehiculo.anio}</td>
+                    <td>${vehiculo.falla}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editarVehiculo(${vehiculo.id}, '${vehiculo.cliente}', '${vehiculo.marca}', '${vehiculo.modelo}', '${vehiculo.anio}', '${vehiculo.falla}')">
+                            Editar
+                        </button>
+
+                        <button class="btn btn-danger btn-sm" onclick="eliminarVehiculo(${vehiculo.id})">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    async function guardarVehiculo() {
         const cliente = document.getElementById('cliente').value;
         const marca = document.getElementById('marca').value;
         const modelo = document.getElementById('modelo').value;
@@ -98,7 +127,6 @@
         }
 
         const vehiculo = {
-            id: Date.now(),
             cliente,
             marca,
             modelo,
@@ -107,97 +135,58 @@
         };
 
         if (editando) {
-
-            vehiculos[indiceEditar] = vehiculo;
+            await fetch(`${API_URL}/${idEditar}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(vehiculo)
+            });
 
             editando = false;
-            indiceEditar = null;
-
+            idEditar = null;
         } else {
-
-            vehiculos.push(vehiculo);
-
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(vehiculo)
+            });
         }
 
-        localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
-
         limpiarFormulario();
-
         mostrarVehiculos();
     }
 
-    function mostrarVehiculos() {
-
-        const tabla = document.getElementById('tablaVehiculos');
-
-        tabla.innerHTML = '';
-
-        vehiculos.forEach((vehiculo, index) => {
-
-            tabla.innerHTML += `
-                <tr>
-                    <td>${vehiculo.id}</td>
-                    <td>${vehiculo.cliente}</td>
-                    <td>${vehiculo.marca}</td>
-                    <td>${vehiculo.modelo}</td>
-                    <td>${vehiculo.anio}</td>
-                    <td>${vehiculo.falla}</td>
-
-                    <td>
-                        <button class="btn btn-warning btn-sm"
-                            onclick="editarVehiculo(${index})">
-                            Editar
-                        </button>
-
-                        <button class="btn btn-danger btn-sm"
-                            onclick="eliminarVehiculo(${index})">
-                            Eliminar
-                        </button>
-                    </td>
-                </tr>
-            `;
-
-        });
-
-    }
-
-    function eliminarVehiculo(index) {
-
-        vehiculos.splice(index, 1);
-
-        localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
-
-        mostrarVehiculos();
-
-    }
-
-    function editarVehiculo(index) {
-
-        const vehiculo = vehiculos[index];
-
-        document.getElementById('cliente').value = vehiculo.cliente;
-        document.getElementById('marca').value = vehiculo.marca;
-        document.getElementById('modelo').value = vehiculo.modelo;
-        document.getElementById('anio').value = vehiculo.anio;
-        document.getElementById('falla').value = vehiculo.falla;
+    function editarVehiculo(id, cliente, marca, modelo, anio, falla) {
+        document.getElementById('cliente').value = cliente;
+        document.getElementById('marca').value = marca;
+        document.getElementById('modelo').value = modelo;
+        document.getElementById('anio').value = anio;
+        document.getElementById('falla').value = falla;
 
         editando = true;
-        indiceEditar = index;
+        idEditar = id;
+    }
 
+    async function eliminarVehiculo(id) {
+        await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE'
+        });
+
+        mostrarVehiculos();
     }
 
     function limpiarFormulario() {
-
         document.getElementById('cliente').value = '';
         document.getElementById('marca').value = '';
         document.getElementById('modelo').value = '';
         document.getElementById('anio').value = '';
         document.getElementById('falla').value = '';
-
     }
 
     mostrarVehiculos();
-
 </script>
 
 </body>
